@@ -1,14 +1,20 @@
 import { useRef, useState } from "react";
 import classes from "./AuthForm.module.css";
+import { useDispatch } from "react-redux";
+import { authActions } from "../../store/authReducer";
+import { useNavigate } from "react-router-dom";
 
 const AuthForm = () => {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   const emailInputRef = useRef();
   const passwordInputRef = useRef();
   const confirmPasswordInputRef = useRef();
 
   const [loginState, setLoginState] = useState(true);
   const [loading, setLoading] = useState(false);
-  const switchModeHandler = () => {
+  const switchModeHandler = (e) => {
+    e.preventDefault();
     setLoginState((state) => !state);
   };
 
@@ -17,12 +23,14 @@ const AuthForm = () => {
     setLoading(true);
     const enteredEmail = emailInputRef.current.value;
     const enteredPassword = passwordInputRef.current.value;
-    const enteredConfirmedPassword = confirmPasswordInputRef.current.value;
-    if (enteredPassword !== enteredConfirmedPassword) {
-      setLoading(false);
-      console.log("passwords do not match");
+    let enteredConfirmedPassword;
+    if (!loginState) {
+      enteredConfirmedPassword = confirmPasswordInputRef.current.value;
+      if (enteredPassword !== enteredConfirmedPassword) {
+        console.log("passwords do not match");
 
-      throw new Error("passwords do not match");
+        throw new Error("passwords do not match");
+      }
     }
     let url;
     if (loginState) {
@@ -50,13 +58,11 @@ const AuthForm = () => {
         }
       })
       .then((data) => {
-        // const loginEmail = enteredEmail.replace(/[^a-zA-Z ]/g, "");
-        // authCtx.login(data.idToken, loginEmail);
         console.log("in authForm", data.idToken);
-        // dispatch(
-        //   authActions.login({ token: data.idToken, email: enteredEmail })
-        // );
-        // navigate("/home", { replace: true });
+        dispatch(
+          authActions.login({ token: data.idToken, email: enteredEmail })
+        );
+        navigate("/chat-away", { replace: true });
         // console.log("haha");
       })
       .catch((err) => {
@@ -64,7 +70,7 @@ const AuthForm = () => {
         console.log(err.message);
         alert(errorMessage);
       });
-
+    setLoading(false);
     emailInputRef.current.value = "";
     passwordInputRef.current.value = "";
   };
@@ -117,7 +123,10 @@ const AuthForm = () => {
           )}
         </div>
         <div className={classes.actions}>
-          {<button type="submit">{loginState ? "Sign In" : "Sign Up"}</button>}
+          {loading && <button>loading</button>}
+          {!loading && (
+            <button type="submit">{loginState ? "Sign In" : "Sign Up"}</button>
+          )}
 
           {loginState ? (
             <button onClick={switchModeHandler}>Create new account</button>
