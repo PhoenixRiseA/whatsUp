@@ -9,6 +9,7 @@ describe("Sign in/ Sign up component", () => {
   //     });
   //     render(<AuthForm/>);
   //     const buttonElement = await screen.findAllByRole('button')
+  //     expect(buttonElement).not.toBeInTheDocument;
   // });
   test("renders Your Username/Email as a text ", () => {
     //Arrange

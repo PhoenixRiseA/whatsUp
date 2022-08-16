@@ -70,7 +70,7 @@ const AuthForm = () => {
         console.log(err.message);
         alert(errorMessage);
       });
-    setLoading(false);
+
     emailInputRef.current.value = "";
     passwordInputRef.current.value = "";
   };

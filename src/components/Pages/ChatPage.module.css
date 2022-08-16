@@ -1,0 +1,15 @@
+.main {
+  margin: 1rem;
+}
+.to {
+  margin: 1rem;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+}
+.to input {
+  border-radius: 0.3rem;
+  font-display: inherit;
+  font-size: large;
+  width: 25rem;
+  height: 2rem;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+}
