@@ -3,11 +3,12 @@ import { EditorState, convertToRaw } from "draft-js";
 import { Editor } from "react-draft-wysiwyg";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import classes from "./ChatPage.module.css";
+import { useSelector } from "react-redux";
 // import { useState } from "react";
 const ChatPage = () => {
   const enteredEmailRef = useRef();
   const enteredSubRef = useRef();
-
+  const loggedInEmail = useSelector((state) => state.auth.email);
   const [editorState, setEditorState] = useState(() =>
     EditorState.createEmpty()
   );
@@ -27,10 +28,12 @@ const ChatPage = () => {
       sub: enteredSub,
       text: text,
     };
-    const emailEndPoint = enteredEmail.replace(/[^a-zA-Z0-9 ]/g, "");
+    // const emailEndPoint = enteredEmail.replace(/[^a-zA-Z0-9 ]/g, "");
+    const parentEmailEndPoint = loggedInEmail.replace(/[^a-zA-Z0-9 ]/g, "");
+
     try {
       const response = await fetch(
-        `https://my-chat-app-2b721-default-rtdb.firebaseio.com/${emailEndPoint}.json`,
+        `https://my-chat-app-2b721-default-rtdb.firebaseio.com/${parentEmailEndPoint}/sent/.json`,
         {
           method: "POST",
           body: JSON.stringify(input),

@@ -5,6 +5,7 @@ import AuthPage from "./components/Pages/AuthPage";
 import ChatPage from "./components/Pages/ChatPage";
 import { useSelector } from "react-redux";
 import SentMail from "./components/Mail/SentMail";
+import Inbox from "./components/Mail/Inbox";
 
 function App() {
   const isAuth = useSelector((state) => state.auth.isAuthenticated);
@@ -14,11 +15,10 @@ function App() {
         {!isAuth && <Route path="/auth" element={<AuthPage />}></Route>}
         {isAuth && <Route path="/chat-away" element={<ChatPage />}></Route>}
         {isAuth && <Route path="/sent-email" element={<SentMail />}></Route>}
+        {isAuth && <Route path="/inbox" element={<Inbox />}></Route>}
         <Route
           path="*"
-          element={
-            !isAuth ? <Navigate to="/auth" /> : <Navigate to="/chat-away" />
-          }
+          element={!isAuth ? <Navigate to="/auth" /> : <Navigate to="/Inbox" />}
         ></Route>
       </Routes>
     </Layout>

@@ -43,6 +43,16 @@ const Header = () => {
             </NavLink>
           </li>
         )}
+        {isAuth && (
+          <li>
+            <NavLink
+              className={(navData) => (navData.isActive ? classes.active : "")}
+              to="/inbox"
+            >
+              Inbox
+            </NavLink>
+          </li>
+        )}
         <li>Products</li>
         <li>About us</li>
         <li>Contact us</li>
