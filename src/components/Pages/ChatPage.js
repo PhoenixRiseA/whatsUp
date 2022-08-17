@@ -4,6 +4,7 @@ import { Editor } from "react-draft-wysiwyg";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import classes from "./ChatPage.module.css";
 import { useSelector } from "react-redux";
+
 // import { useState } from "react";
 const ChatPage = () => {
   const enteredEmailRef = useRef();
@@ -24,16 +25,37 @@ const ChatPage = () => {
     const item = convertToRaw(editorState.getCurrentContent());
     const text = item.blocks[0].text;
     const input = {
-      email: enteredEmail,
+      toEmail: enteredEmail,
+      fromEmail: loggedInEmail,
       sub: enteredSub,
       text: text,
+      seen: false,
+      date: new Date().toString(),
     };
-    // const emailEndPoint = enteredEmail.replace(/[^a-zA-Z0-9 ]/g, "");
+    const emailEndPoint = enteredEmail.replace(/[^a-zA-Z0-9 ]/g, "");
     const parentEmailEndPoint = loggedInEmail.replace(/[^a-zA-Z0-9 ]/g, "");
 
     try {
       const response = await fetch(
-        `https://my-chat-app-2b721-default-rtdb.firebaseio.com/${parentEmailEndPoint}/sent/.json`,
+        `https://my-chat-app-2b721-default-rtdb.firebaseio.com/${emailEndPoint}/inbox/.json`,
+        {
+          method: "POST",
+          body: JSON.stringify(input),
+        }
+      );
+      const data = await response.json();
+
+      console.log(data);
+      enteredEmailRef.current.value = "";
+      enteredSubRef.current.value = "";
+    } catch (err) {
+      console.log(err.message);
+      throw new Error("email could not be sent");
+    }
+
+    try {
+      const response = await fetch(
+        `https://my-chat-app-2b721-default-rtdb.firebaseio.com/${parentEmailEndPoint}/sent.json`,
         {
           method: "POST",
           body: JSON.stringify(input),
@@ -41,8 +63,6 @@ const ChatPage = () => {
       );
       const data = await response.json();
       console.log(data);
-      enteredEmailRef.current.value = "";
-      enteredSubRef.current.value = "";
     } catch (err) {
       console.log(err.message);
       throw new Error("email could not be sent");
