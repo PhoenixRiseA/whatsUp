@@ -11,7 +11,7 @@ const Header = () => {
   };
   return (
     <header className={classes.header}>
-      {isAuth && <h1>Welcome to WhatsUp</h1>}
+      {<h1>Welcome to WhatsUp</h1>}
       <ul>
         {!isAuth && (
           <li>
@@ -19,41 +19,11 @@ const Header = () => {
               className={(navData) => (navData.isActive ? classes.active : "")}
               to="/auth"
             >
-              Login/Signup
+              Login
             </NavLink>
           </li>
         )}
-        {isAuth && (
-          <li>
-            <NavLink
-              className={(navData) => (navData.isActive ? classes.active : "")}
-              to="/chat-away"
-            >
-              Chat away
-            </NavLink>
-          </li>
-        )}
-        {isAuth && (
-          <li>
-            <NavLink
-              className={(navData) => (navData.isActive ? classes.active : "")}
-              to="/sent-email"
-            >
-              Sent email
-            </NavLink>
-          </li>
-        )}
-        {isAuth && (
-          <li>
-            <NavLink
-              className={(navData) => (navData.isActive ? classes.active : "")}
-              to="/inbox"
-            >
-              Inbox
-            </NavLink>
-          </li>
-        )}
-        <li>Products</li>
+
         <li>About us</li>
         <li>Contact us</li>
         {isAuth && (

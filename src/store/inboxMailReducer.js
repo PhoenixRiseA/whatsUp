@@ -9,7 +9,7 @@ const inboxMailSlice = createSlice({
   initialState: initialEmailState,
   reducers: {
     replace(state, action) {
-      state.items = action.payload.items;
+      state.items = action.payload;
     },
     inbox(state, action) {
       const newItem = action.payload;

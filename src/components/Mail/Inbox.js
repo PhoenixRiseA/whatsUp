@@ -1,9 +1,12 @@
 import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import InboxItem from "./InboxItem";
 // import { useNavigate } from "react-router-dom";
+import { inboxMailActions } from "../../store/inboxMailReducer";
+import classes from "./Inbox.module.css";
 
 const Inbox = () => {
+  const dispatch = useDispatch();
   const loggedInEmail = useSelector((state) => state.auth.email);
   const parentMailEndPoint = loggedInEmail.replace(/[^a-zA-Z0-9 ]/g, "");
   const [receivedEmails, setReceivedEmails] = useState([]);
@@ -31,6 +34,7 @@ const Inbox = () => {
             seen: data[key].seen,
           });
         }
+        dispatch(inboxMailActions.replace(loadedData));
         let unseen = 0;
 
         const deleteMailHandler = (id) => {
@@ -78,13 +82,13 @@ const Inbox = () => {
       fetchData();
     }, 2000);
     return () => clearInterval(intervalId);
-  }, [parentMailEndPoint, deleted]);
+  }, [parentMailEndPoint, deleted, dispatch]);
   return (
-    <div>
+    <div className={classes.inbox}>
       <h1>Inbox</h1>
       <h2>Unread messages:{unseenMail}</h2>
 
-      <ul>{receivedEmails}</ul>
+      <div className={classes.inboxItems}>{receivedEmails}</div>
     </div>
   );
 };

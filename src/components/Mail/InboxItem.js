@@ -5,15 +5,16 @@ const InboxItem = (props) => {
   console.log(props.id);
 
   return (
-    <Link to={`/inbox/${props.id}`}>
-      <li className={classes.listItem}>
-        {props.seen === true ? "" : "*"}
-        <p>from:{props.email}</p>
+    <div className={classes.inboxItem}>
+      {props.seen === true ? "" : "*"}
+      <Link to={`/inbox/${props.id}`}>
+        <p>From: {props.fromEmail}</p>
 
         <p>{props.sub}</p>
-        <button>X</button>
-      </li>
-    </Link>
+      </Link>
+
+      <button onClick={props.onDelete}>X</button>
+    </div>
   );
 };
 export default InboxItem;

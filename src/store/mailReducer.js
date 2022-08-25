@@ -5,11 +5,12 @@ const initialEmailState = {
 };
 
 const mailSlice = createSlice({
-  name: "mail",
+  name: "sent",
   initialState: initialEmailState,
   reducers: {
     replace(state, action) {
-      state.items = action.payload.items;
+      console.log(action.payload);
+      state.items = action.payload;
     },
     mail(state, action) {
       const newItem = action.payload;

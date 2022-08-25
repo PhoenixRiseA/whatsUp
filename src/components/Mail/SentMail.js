@@ -4,7 +4,6 @@ import classes from "./SentMail.module.css";
 import { useDispatch } from "react-redux";
 import { mailActions } from "../../store/mailReducer";
 import { Link } from "react-router-dom";
-// import SentItem from "./SentItem";
 
 const SentMail = () => {
   const loggedInEmail = useSelector((state) => state.auth.email);
@@ -33,13 +32,13 @@ const SentMail = () => {
         dispatch(mailActions.replace(loadedData));
         const emailList = loadedData.map((item) => {
           return (
-            <Link to={`/sent-email/${item.id}`}>
-              <li>
+            <div className={classes.sentMailItem}>
+              <Link to={`/sent-email/${item.id}`}>
                 <p>to: {item.toEmail}</p>
                 <p>{item.sub}</p>
-                <button>X</button>
-              </li>
-            </Link>
+              </Link>
+              <button>X</button>
+            </div>
           );
         });
         setSentEmails(emailList);
@@ -51,9 +50,9 @@ const SentMail = () => {
   }, [emailEndPoint, dispatch]);
 
   return (
-    <div className="sent">
+    <div className={classes.sent}>
       <h1>Sent</h1>
-      <ul className={classes.emailList}>{sentEmails}</ul>
+      <div className={classes.sentMailItems}>{sentEmails}</div>
     </div>
   );
 };

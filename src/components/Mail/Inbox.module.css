@@ -1,0 +1,17 @@
+.inbox {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-items: center;
+  margin: 1rem;
+
+  flex-direction: column;
+}
+.inboxItems {
+  display: flex;
+  align-items: center;
+  justify-items: center;
+  margin: 1rem;
+  flex-direction: column;
+  padding: 1rem;
+}

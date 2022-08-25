@@ -1,0 +1,68 @@
+.section {
+  position: relative;
+  float: left;
+  border-radius: 0.5rem;
+  padding: 0.1rem;
+  top: 0;
+  left: 0;
+  width: auto;
+  height: 50rem;
+  background-color: rgb(61, 56, 56);
+  color: rgb(252, 245, 245);
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+}
+.section h2 {
+  display: flex;
+  justify-content: center;
+}
+
+.section nav {
+  height: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.section div {
+  width: auto;
+  margin: 1rem;
+}
+
+.section a {
+  color: rgb(252, 245, 245);
+  text-decoration: none;
+  margin: 0.1rem;
+}
+
+.section a:hover,
+.section a:active,
+.section a.active {
+  color: #95bcf0;
+  padding-bottom: 0.25rem;
+  border-bottom: 1px solid #95bcf0;
+  margin: 1rem;
+}
+
+.section button {
+  color: rgb(245, 236, 236);
+  text-decoration: none;
+  border-radius: 0.5rem;
+  background-color: rgb(20, 6, 6);
+  size: 5rem;
+  width: 5rem;
+  height: 2rem;
+  margin: 1rem;
+}
+
+.section button:hover,
+.section button:active,
+.section button.active {
+  color: #dee3e9;
+  padding-bottom: 0.25rem;
+  border-bottom: 2px solid #1ed80d;
+  width: 5rem;
+}

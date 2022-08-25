@@ -1,0 +1,43 @@
+.sent {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-items: center;
+  margin: 1rem;
+
+  flex-direction: column;
+}
+.sentMailItems {
+  display: flex;
+  align-items: center;
+  justify-items: center;
+  margin: 1rem;
+  flex-direction: column;
+  padding: 1rem;
+}
+
+.sentMailItem {
+  display: flex;
+  align-items: center;
+  justify-items: center;
+
+  margin: 1rem;
+  padding: 1rem;
+  border-color: aquamarine;
+  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.25);
+}
+.sentMailItem button {
+  width: 3rem;
+  background-color: rgb(45, 212, 218);
+  border-radius: 0.3rem;
+  margin: 12px;
+  padding-bottom: 0.25rem;
+  border: 2px solid #0e0c0c;
+}
+.sentMailItem button:hover,
+.sentMailItem button:active,
+.sentMailItem button.active {
+  color: #dee3e9;
+  padding-bottom: 0.25rem;
+  border: 2px solid #f51313;
+}

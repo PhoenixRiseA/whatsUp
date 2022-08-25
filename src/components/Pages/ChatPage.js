@@ -71,7 +71,7 @@ const ChatPage = () => {
 
   return (
     <form className={classes.main} onSubmit={submitHandler}>
-      <h1>Chat away</h1>
+      <h1>Mail away!</h1>
       <div className={classes.to}>
         <label>To:</label>
         <br />

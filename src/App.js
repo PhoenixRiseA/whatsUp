@@ -6,7 +6,7 @@ import ChatPage from "./components/Pages/ChatPage";
 import { useSelector } from "react-redux";
 import SentMail from "./components/Mail/SentMail";
 import Inbox from "./components/Mail/Inbox";
-import MailDetail from "./components/Mail/MailDetail";
+import InboxMailDetail from "./components/Mail/inboxMailDetail";
 import SentMailDetails from "./components/Mail/SentMailDetails";
 
 function App() {
@@ -19,7 +19,7 @@ function App() {
         {isAuth && <Route path="/sent-email" element={<SentMail />}></Route>}
         {isAuth && <Route path="/inbox" element={<Inbox />}></Route>}
         {isAuth && (
-          <Route path="/inbox/:inboxId" element={<MailDetail />}></Route>
+          <Route path="/inbox/:inboxId" element={<InboxMailDetail />}></Route>
         )}
         {isAuth && (
           <Route

@@ -1,0 +1,21 @@
+.inboxMailDetails {
+  position: relative;
+  justify-content: space-between;
+  align-items: center;
+
+  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.25);
+  margin-left: 10rem;
+}
+.inboxMailDetails h3 {
+  position: relative;
+  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.25);
+  margin: 0.5rem;
+  padding: 1rem;
+  font-style: italic;
+}
+.inboxMailDetails p {
+  position: relative;
+  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.25);
+  margin: 0.5rem;
+  padding: 1rem;
+}

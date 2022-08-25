@@ -1,6 +1,7 @@
 import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
+import classes from "./SentMailDetails.module.css";
 const MailDetail = () => {
   const [item, setItem] = useState("");
   const loggedInEmail = useSelector((state) => state.auth.email);
@@ -8,8 +9,6 @@ const MailDetail = () => {
   const params = useParams();
 
   console.log(params.sentId);
-  const mails = useSelector((state) => state.sent.items);
-  console.log(mails);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -29,12 +28,15 @@ const MailDetail = () => {
   }, [params.sentId, parentMailEndPoint]);
 
   return (
-    <div>
-      <p>mailItem</p>
-      <h2>{item.email}</h2>
-      <p>{item.sub}</p>
+    <div className={classes.sentMailDetails}>
+      <h3>To: {item.toEmail}</h3>
+      <br />
+      <p>Sub: {item.sub}</p>
+      <br />
       <p>{item.text}</p>
+      <br />
       <p>{item.date}</p>
+      <br />
     </div>
   );
 };

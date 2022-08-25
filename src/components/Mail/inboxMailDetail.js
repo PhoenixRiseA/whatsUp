@@ -1,16 +1,15 @@
 import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
-import { mailActions } from "../../store/mailReducer";
-const MailDetail = () => {
+
+import classes from "./inboxMailDetail.module.css";
+const InboxMailDetail = () => {
   const [item, setItem] = useState("");
   const loggedInEmail = useSelector((state) => state.auth.email);
   const parentMailEndPoint = loggedInEmail.replace(/[^a-zA-Z0-9 ]/g, "");
   const params = useParams();
   const dispatch = useDispatch();
   console.log(params.inboxId);
-  const mails = useSelector((state) => state.mail.items);
-  console.log(mails);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -21,7 +20,8 @@ const MailDetail = () => {
         const data = await response.json();
         console.log(data);
         const loadedData = { ...data, seen: true };
-        dispatch(mailActions.replace(loadedData));
+        console.log(loadedData);
+
         setItem(loadedData);
 
         fetch(
@@ -37,14 +37,14 @@ const MailDetail = () => {
     };
     fetchData();
   }, [params.inboxId, parentMailEndPoint, dispatch]);
+  console.log(item.fromEmail);
 
   return (
-    <div>
-      <p>mailItem</p>
-      <h2>{item.email}</h2>
-      <p>{item.sub}</p>
-      <p>{item.text}</p>
+    <div className={classes.inboxMailDetails}>
+      <h3>From: {item.fromEmail}</h3>
+      <p>sub: {item.sub}</p>
+      <p>text: {item.text}</p>
     </div>
   );
 };
-export default MailDetail;
+export default InboxMailDetail;
