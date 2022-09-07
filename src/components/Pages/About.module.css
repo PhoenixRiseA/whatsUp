@@ -1,0 +1,14 @@
+.container {
+  display: flex;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.title {
+  font: bold;
+}
+.text {
+  font-style: italic;
+  padding: 1rem;
+}

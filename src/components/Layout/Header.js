@@ -24,7 +24,14 @@ const Header = () => {
           </li>
         )}
 
-        <li>About us</li>
+        <li>
+          <NavLink
+            className={(navData) => (navData.isActive ? classes.active : "")}
+            to="/about"
+          >
+            About us
+          </NavLink>
+        </li>
         <li>Contact us</li>
         {isAuth && (
           <li>

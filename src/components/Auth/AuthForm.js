@@ -74,35 +74,38 @@ const AuthForm = () => {
     emailInputRef.current.value = "";
     passwordInputRef.current.value = "";
   };
+  const forgotPasswordHandler = () => {
+    navigate("/forgot-password");
+  };
+  // const forgotPasswordHandler = (e) => {
+  //   const enteredEmail = emailInputRef.current.value;
+  //   e.preventDefault();
 
-  //   const forgotPasswordHandler = (e) => {
-  //     const enteredEmail = emailInputRef.current.value;
-  //     e.preventDefault();
-  //     fetch(
-  //       "https://identitytoolkit.googleapis.com/v1/accounts:sendOobCode?key=AIzaSyAfEMJNUWanJky-jYSDG0n0CpMrB2rKz04",
-  //       {
-  //         method: "POST",
-  //         body: JSON.stringify({
-  //           requestType: "PASSWORD_RESET",
-  //           email: enteredEmail,
-  //         }),
-  //         headers: {
-  //           "Content-Type": "application/json",
-  //         },
+  //   fetch(
+  //     "https://identitytoolkit.googleapis.com/v1/accounts:sendOobCode?key=AIzaSyAYWy75MlnHEXyGt5vSCKX9YcvdJhsxLmQ",
+  //     {
+  //       method: "POST",
+  //       body: JSON.stringify({
+  //         requestType: "PASSWORD_RESET",
+  //         email: enteredEmail,
+  //       }),
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //       },
+  //     }
+  //   )
+  //     .then((res) => {
+  //       if (res.ok) {
+  //         return res.json();
   //       }
-  //     )
-  //       .then((res) => {
-  //         if (res.ok) {
-  //           return res.json();
-  //         }
-  //       })
-  //       .then((data) => console.log(data))
-  //       .catch((err) => {
-  //         let errorMessage = "Could not send verification email try again";
-  //         alert(errorMessage);
-  //         throw new Error(err.message);
-  //       });
-  //   };
+  //     })
+  //     .then((data) => console.log(data))
+  //     .catch((err) => {
+  //       let errorMessage = "Could not send verification email try again";
+  //       alert(errorMessage);
+  //       throw new Error(err.message);
+  //     });
+  // };
 
   return (
     <section className={classes.auth}>
@@ -127,7 +130,14 @@ const AuthForm = () => {
           {!loading && (
             <button type="submit">{loginState ? "Sign In" : "Sign Up"}</button>
           )}
-
+          {loginState && (
+            <button
+              className={classes.transparent}
+              onClick={forgotPasswordHandler}
+            >
+              Forgot Password?
+            </button>
+          )}
           {loginState ? (
             <button onClick={switchModeHandler}>Create new account</button>
           ) : (
