@@ -9,6 +9,7 @@ const SentMail = () => {
   const loggedInEmail = useSelector((state) => state.auth.email);
   const emailEndPoint = loggedInEmail.replace(/[^a-zA-Z0-9 ]/g, "");
   const [sentEmails, setSentEmails] = useState([]);
+  const [deleted, setDeleted] = useState(false);
   const dispatch = useDispatch();
   useEffect(() => {
     async function fetchData() {
@@ -30,6 +31,29 @@ const SentMail = () => {
         }
         console.log(loadedData);
         dispatch(mailActions.replace(loadedData));
+        const deleteMailHandler = (id) => {
+          setDeleted(false);
+          fetch(
+            `https://my-chat-app-2b721-default-rtdb.firebaseio.com/${emailEndPoint}/sent/${id}.json`,
+            {
+              method: "DELETE",
+            }
+          )
+            .then((res) => {
+              if (res.ok) {
+                return res.json();
+              }
+            })
+            .then((data) => {
+              console.log(data);
+              setDeleted(true);
+              console.log(deleted);
+              // navigate("/");
+            })
+            .catch((err) => {
+              throw new Error(err.message);
+            });
+        };
         const emailList = loadedData.map((item) => {
           return (
             <div className={classes.sentMailItem}>
@@ -37,7 +61,7 @@ const SentMail = () => {
                 <p>to: {item.toEmail}</p>
                 <p>{item.sub}</p>
               </Link>
-              <button>X</button>
+              <button onClick={deleteMailHandler.bind(null, item.id)}>X</button>
             </div>
           );
         });
@@ -47,7 +71,7 @@ const SentMail = () => {
       }
     }
     fetchData();
-  }, [emailEndPoint, dispatch]);
+  }, [emailEndPoint, dispatch, deleted]);
 
   return (
     <div className={classes.sent}>

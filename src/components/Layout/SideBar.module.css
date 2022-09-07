@@ -1,5 +1,6 @@
 .section {
   position: relative;
+  flex-wrap: wrap;
   float: left;
   border-radius: 0.5rem;
   padding: 0.1rem;
@@ -30,6 +31,7 @@
 .section div {
   width: auto;
   margin: 1rem;
+  border-color: #020f01;
 }
 
 .section a {
@@ -41,9 +43,9 @@
 .section a:hover,
 .section a:active,
 .section a.active {
-  color: #95bcf0;
+  color: rgb(136, 236, 240);
   padding-bottom: 0.25rem;
-  border-bottom: 1px solid #95bcf0;
+
   margin: 1rem;
 }
 
@@ -63,6 +65,6 @@
 .section button.active {
   color: #dee3e9;
   padding-bottom: 0.25rem;
-  border-bottom: 2px solid #1ed80d;
+  border-bottom: 2px solid #020f01;
   width: 5rem;
 }

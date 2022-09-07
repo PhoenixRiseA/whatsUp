@@ -1,5 +1,6 @@
 import classes from "./InboxItem.module.css";
 import { Link } from "react-router-dom";
+import React from "react";
 
 const InboxItem = (props) => {
   console.log(props.id);
@@ -17,4 +18,4 @@ const InboxItem = (props) => {
     </div>
   );
 };
-export default InboxItem;
+export default React.memo(InboxItem);

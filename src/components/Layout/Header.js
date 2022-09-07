@@ -11,7 +11,7 @@ const Header = () => {
   };
   return (
     <header className={classes.header}>
-      {<h1>Welcome to WhatsUp</h1>}
+      {<h1>Welcome to WhatsUp!</h1>}
       <ul>
         {!isAuth && (
           <li>
